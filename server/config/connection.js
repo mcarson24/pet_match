@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 // Configure Mongoose and MongoDB
 mongoose.connect('mongodb://localhost:27017/pet_match', {
@@ -6,4 +6,4 @@ mongoose.connect('mongodb://localhost:27017/pet_match', {
   useUnifiedTopology: true,
 })
 
-export default mongoose.connection
+module.exports = mongoose.connection
