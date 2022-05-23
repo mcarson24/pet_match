@@ -1,0 +1,19 @@
+{
+  "name": "pet_matcher",
+  "version": "0.0.1",
+  "description": "A tinder-like application for finding adoptable pets.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+  },
+  "keywords": [
+    "pets",
+    "pet",
+    "finder"
+  ],
+  "author": "matthew.carson@pm.me dwarrick91@gmail.com nhilde21@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^7.2.1"
+  }
+}
