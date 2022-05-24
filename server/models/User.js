@@ -22,7 +22,7 @@ const UserSchema = new Schema({
   pets: [ // This will be the pets that a user 'loves' or saves for later reference
     {
       type: Schema.Types.ObjectId,
-      ref: 'pet'
+      ref: 'Pet'
     }
   ] 
 }, {
