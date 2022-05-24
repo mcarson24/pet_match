@@ -1,13 +1,13 @@
 import React from 'react';
-// import Nav from './nav';
+
 
 
 function Home() {
     return(
         <>
-        {/* <Nav /> */}
-
-        <h1>test</h1>
+        <h1>Not Pinder</h1>
+        <h2>Nope</h2>
+        <p>Test</p>
         
         
         

@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Profile from './components/profile';
 import Mission from './components/mission';
 import Pet from './components/pet';
+import Nav from './components/nav';
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
 
 <Router>
      <React.StrictMode>
+       <Nav />
        <Routes>
-         
+         <Route path="/" element={<Home />} />
          <Route path="/profile" element={<Profile />} />
          <Route path="/ourmission" element={<Mission />} />
         <Route path="/pets" element={<Pet />} />
@@ -22,7 +24,7 @@ function App() {
      </React.StrictMode>
    </Router>
 
-    <h1>hello world</h1>
+  
     <Home/>
 
 

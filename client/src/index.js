@@ -3,23 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import Profile from './components/profile';
-import Mission from './components/mission';
-import Pet from './components/pet';
+// import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+// import Profile from './components/profile';
+// import Mission from './components/mission';
+// import Pet from './components/pet';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 // root.render(
-//   <Router>
-//     <React.StrictMode>
-//       <Routes>
-//         <Route path="/" element={<App />} />
-//         <Route path="/profile" element={<Profile />} />
-//         <Route path="/ourmission" element={<Mission />} />
-//         <Route path="/pets" element={<Pet />} />
-//       </Routes>
-//     </React.StrictMode>
-//   </Router>
+//   // <Router>
+//   //   <React.StrictMode>
+//   //     <Routes>
+//   //       <Route path="/" element={<App />} />
+//   //       <Route path="/profile" element={<Profile />} />
+//   //       <Route path="/ourmission" element={<Mission />} />
+//   //       <Route path="/pets" element={<Pet />} />
+//   //     </Routes>
+//   //   </React.StrictMode>
+//   // </Router>
 // );
 
 // If you want to start measuring performance in your app, pass a function
