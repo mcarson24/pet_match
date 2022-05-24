@@ -1,8 +1,9 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const { Schema, model } = require('mongoose')
+// const Schema = mongoose.Schema
+const Pet = require('./Pet')
 const bcrypt = require('bcrypt')
 
-const UserSchema = Schema({
+const UserSchema = new Schema({
   name: { // username
     type: Schema.Types.String, 
     required: true,
@@ -18,10 +19,15 @@ const UserSchema = Schema({
     required: true,
     minlength: 8
   },
-  pets: [Pet] // This will be the pets that a user 'loves' or saves for later reference
+  pets: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'pet'
+    }
+  ] // This will be the pets that a user 'loves' or saves for later reference
 })
 
-UserSchema.pre('save', async next => {
+UserSchema.pre('save', async function(next) {
   if (this.isNew || this.isModified('password')) {
     const saltRounds = 10
     this.password = await bcrypt.hash(this.password, saltRounds)
@@ -35,6 +41,6 @@ UserSchema.methods.isPasswordCorrect = async password => {
   return await bcrypt.compare(password, this.password)
 }
 
-const User = mongoose.model('User', UserSchema)
+const User = model('User', UserSchema)
 
 module.exports = User

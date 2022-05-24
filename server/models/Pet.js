@@ -1,5 +1,4 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const { Schema, model } = require('mongoose')
 
 // When a user decides to match with a pet from the API
 // We will save pertinent pet info so the API will not have
@@ -14,7 +13,7 @@ const Schema = mongoose.Schema
 // description
 // petfinder link (all other information can be found on each pet's petfinder page)
 
-const PetSchema = Schema({
+const PetSchema = new Schema({
   name: {
     type: Schema.Types.String,
     require: true,
@@ -43,4 +42,6 @@ const PetSchema = Schema({
   }
 })
 
+const Pet = model('Pet', PetSchema)
 
+module.exports = Pet
