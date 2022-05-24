@@ -5,15 +5,15 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('pets');
+      return User.find()
     },
-    user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('pets');
+    user: async (parent, { name }) => {
+      return User.findOne({ name }).populate('pets');
     },
-    // pets: async (parent, { username }) => {
-    //   const params = username ? { username } : {};
-    //   return Pet.find(params).sort({ createdAt: -1 });
-    // },
+    pets: async (parent, { username }) => {
+      const params = username ? { username } : {};
+      return Pet.find(params).sort({ createdAt: -1 });
+    },
     // pet: async (parent, { petId }) => {
     //   return Pet.findOne({ _id: petId });
     // },
@@ -26,8 +26,8 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
+    addUser: async (parent, { name, email, password }) => {
+      const user = await User.create({ name, email, password });
       const token = signToken(user);
       return { token, user };
     },
@@ -48,22 +48,23 @@ const resolvers = {
 
       return { token, user };
     },
-    // addThought: async (parent, { thoughtText }, context) => {
-    //   if (context.user) {
-    //     const thought = await Thought.create({
-    //       thoughtText,
-    //       thoughtAuthor: context.user.username,
-    //     });
-
-    //     await User.findOneAndUpdate(
-    //       { _id: context.user._id },
-    //       { $addToSet: { thoughts: thought._id } }
-    //     );
-
-    //     return thought;
-    //   }
-    //   throw new AuthenticationError('You need to be logged in!');
-    // },
+    addPet: async (parent, { petId }, context) => {
+      if (context.user) {
+        return Pet.findOneAndUpdate(
+          { _id: petId },
+          {
+            $addToSet: {
+              pets: {  petUser: context.user.username },
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      // throw new AuthenticationError('You need to be logged in!');
+    },
     // addComment: async (parent, { thoughtId, commentText }, context) => {
     //   if (context.user) {
     //     return Thought.findOneAndUpdate(
