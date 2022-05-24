@@ -27,6 +27,11 @@ type User {
    
    
   }
-  `
+  
 
-module.exports = typeDefs;
+  type Query {
+    users: [User]
+  }
+`
+
+module.exports = typeDefs
