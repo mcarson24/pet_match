@@ -19,12 +19,18 @@ const UserSchema = new Schema({
     required: true,
     minlength: 8
   },
-  pets: [
+  pets: [ // This will be the pets that a user 'loves' or saves for later reference
     {
       type: Schema.Types.ObjectId,
       ref: 'pet'
     }
-  ] // This will be the pets that a user 'loves' or saves for later reference
+  ] 
+}, {
+  toJSON: {
+    transform: (_, ret) => {
+      delete ret.password
+    }
+  }
 })
 
 UserSchema.pre('save', async function(next) {
