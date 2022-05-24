@@ -9,7 +9,7 @@ type User {
     pets: [Pet]!
   }
   type Pet {
-      
+      _id: ID
   }
   type Auth {
     token: ID!
@@ -24,8 +24,7 @@ type User {
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addThought(thoughtText: String!): Thought
-    removeThought(thoughtId: ID!): Thought
+   
    
   }
   `
