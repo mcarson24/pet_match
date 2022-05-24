@@ -8,7 +8,10 @@ const resolvers = {
     pets: async (parent, { _id }) => {
       const params = _id ? { _id } : {}
       return await Pet.find(params)
-    }
+    },
+   pet: async (parent,  {petId }) => {
+     return Pet.findOne({ _id: petId});
+   }
   },
   Mutation: {
     addUser: async (parent, { name, email, password }) => await User.create({ name, email, password }),

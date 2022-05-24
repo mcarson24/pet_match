@@ -22,7 +22,8 @@ const typeDefs = gql`
   type Query {
     user(_id: String!): User
     users: [User]
-    pets(_id: String): [Pet]
+    pets(name: String): [Pet]
+    pet(petId: ID!): Pet
   }
 
   type Mutation {
@@ -37,13 +38,7 @@ const typeDefs = gql`
     ): Pet
     addPetToUser(user: ID!, pet: ID!): User
   }
-  type Mutation {
-    addUser(name: String!, email: String!, password: String!): Auth
-    login(email: String!, password: String!): Auth
-    addPet(petId: String!): Pet
-   
-   
-  }
+ 
   `
 
 module.exports = typeDefs;
