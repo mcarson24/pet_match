@@ -1,6 +1,8 @@
+require('dotenv').config()
+const { AuthenticationError } = require('apollo-server-express');
 const Pet = require("../models/Pet")
 const User = require("../models/User")
-const { signToken } = require('../utils/auth')
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
@@ -9,7 +11,16 @@ const resolvers = {
     pets: async (parent, { _id }) => {
       const params = _id ? { _id } : {}
       return await Pet.find(params)
+    },
+   pet: async (parent,  {petId }) => {
+     return Pet.findOne({ _id: petId});
+   },
+   me: async (parent, args, context) => {
+    if (context.user) {
+      return User.findOne({ _id: context.user._id }).populate('pets');
     }
+    throw new AuthenticationError('You need to be logged in!');
+  }, 
   },
   Mutation: {
     login: async (parent, { email, password }) => {
@@ -23,25 +34,57 @@ const resolvers = {
       return { token, user}
     },
     addUser: async (parent, { name, email, password }) => await User.create({ name, email, password }),
-    addPet: async (parent, args) => {
-      return await Pet.create({
-        name: args.name,
-        type: args.type,
-        breed: args.breed,
-        location: args.location,
-        description: args.description,
-        image: args.image,
-        link: args.link
-      })
-    },
-    addPetToUser: async (parent, { user, pet }) => {
-      return await User.findOneAndUpdate(
-        { _id: user },
-        { $addToSet: { pets: pet } }, 
-        { new: true }
-      )
-    }
-  }
-}
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
 
-module.exports = resolvers
+      if (!user) {
+        throw new AuthenticationError('No user found with this email address');
+      }
+
+      const correctPw = await user.isPasswordCorrect(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const token = signToken({ email: 'bobbyrobb@example.com'});
+      console.log(token);
+      return { token, user };
+    },
+    addPet: async (parent, args, context) => {
+      if (context.user) {
+        const pet = await Pet.create({
+          name: args.name,
+          type: args.type,
+          breed: args.breed,
+          location: args.location,
+          description: args.description,
+          image: args.image,
+          link: args.link,
+        });
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { pets: pet._id } }
+        );
+        return pet;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+     
+    },
+    // addPetToUser: async (parent, { user, pet }, context) => {
+    //   return await User.findOneAndUpdate(
+    //     { _id: user },
+        
+    //     { 
+    //       $addToSet: { pets: pet } }, 
+    //     { new: true }
+    //   );
+      
+    // }
+  }
+};
+
+
+
+
+module.exports = resolvers;

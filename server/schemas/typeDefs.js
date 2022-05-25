@@ -10,6 +10,7 @@ const typeDefs = gql`
     description: String
     image: String
     link: String
+    petAdoptee: String
   }
 
   type User {
@@ -28,11 +29,14 @@ const typeDefs = gql`
   type Query {
     user(_id: String!): User
     users: [User]
-    pets(_id: String): [Pet]
+    pets(name: String): [Pet]
+    pet(petId: ID!): Pet
+    me: User
   }
 
   type Mutation {
-    addUser(name: String!, email: String!, password: String!): User
+    addUser(name: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
     addPet(name: String!, 
            type: String!
            breed: String!
@@ -41,9 +45,10 @@ const typeDefs = gql`
            image: String!
            link: String!
     ): Pet
-    addPetToUser(user: ID!, pet: ID!): User
-    login(email: String!, password: String!): Auth
+   
   }
 `
 
-module.exports = typeDefs
+module.exports = typeDefs;
+// addPetToUser(user: ID!, pet: ID!): User
+
