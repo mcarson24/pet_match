@@ -1,9 +1,12 @@
-require('dotenv').config()
+const path = require('path')
+require("dotenv").config({
+  path: path.resolve(__dirname, '../.env')
+});
 const jwt = require('jsonwebtoken');
-
-const secret = process.env.APP_KEY;
+console.log(process.env);
+const secret = process.env.SECRET;
 const expiration = '2h';
-
+console.log(secret);
 module.exports = {
   authMiddleware: function ({ req }) {
     let token = req.body.token || req.query.token || req.headers.authorization;
@@ -25,8 +28,9 @@ module.exports = {
 
     return req;
   },
-  signToken: function ({ email, username, _id }) {
-    const payload = { email, username, _id };
+  signToken: function ({ email, name, _id }) {
+    const payload = { email, name, _id };
+  
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
 };

@@ -31,6 +31,7 @@ const typeDefs = gql`
     users: [User]
     pets(name: String): [Pet]
     pet(petId: ID!): Pet
+    me: User
   }
 
   type Mutation {
@@ -44,10 +45,11 @@ const typeDefs = gql`
            image: String!
            link: String!
     ): Pet
-    addPetToUser(user: ID!, pet: ID!): User
+   
   }
  
   `
 
 module.exports = typeDefs;
 // addPetToUser(user: ID!, pet: ID!): User
+

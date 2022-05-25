@@ -1,3 +1,4 @@
+require('dotenv').config()
 const { AuthenticationError } = require('apollo-server-express');
 const Pet = require("../models/Pet")
 const User = require("../models/User")
@@ -13,7 +14,13 @@ const resolvers = {
     },
    pet: async (parent,  {petId }) => {
      return Pet.findOne({ _id: petId});
-   }
+   },
+   me: async (parent, args, context) => {
+    if (context.user) {
+      return User.findOne({ _id: context.user._id }).populate('pets');
+    }
+    throw new AuthenticationError('You need to be logged in!');
+  }, 
   },
   Mutation: {
     addUser: async (parent, { name, email, password }) => await User.create({ name, email, password }),
@@ -30,8 +37,8 @@ const resolvers = {
         throw new AuthenticationError('Incorrect credentials');
       }
 
-      const token = signToken(user);
-
+      const token = signToken({ email: 'bobbyrobb@example.com'});
+      console.log(token);
       return { token, user };
     },
     addPet: async (parent, args, context) => {

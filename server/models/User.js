@@ -12,7 +12,9 @@ const UserSchema = new Schema({
   email: {
     type: Schema.Types.String,
     required: true,
-    trim: true
+    trim: true,
+    unique: true,
+    match: [/.+@.+\..+/, 'Must match an email address!'],
   },
   password: {
     type: Schema.Types.String,
@@ -25,13 +27,15 @@ const UserSchema = new Schema({
       ref: 'Pet'
     }
   ] 
-}, {
+}, 
+{
   toJSON: {
     transform: (_, ret) => {
       delete ret.password
     }
   }
-})
+}
+)
 
 UserSchema.pre('save', async function(next) {
   if (this.isNew || this.isModified('password')) {
@@ -43,7 +47,7 @@ UserSchema.pre('save', async function(next) {
 })
 
 // For Authentication, check if provided password matches user's hashed password:
-UserSchema.methods.isPasswordCorrect = async password => {
+UserSchema.methods.isPasswordCorrect = async function (password)  {
   return await bcrypt.compare(password, this.password);
 }
 
