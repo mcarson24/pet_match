@@ -1,5 +1,7 @@
+const { AuthenticationError } = require('apollo-server-express');
 const Pet = require("../models/Pet")
 const User = require("../models/User")
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
@@ -15,24 +17,53 @@ const resolvers = {
   },
   Mutation: {
     addUser: async (parent, { name, email, password }) => await User.create({ name, email, password }),
-    addPet: async (parent, args, context) => {
-      return await Pet.create({
-        name: args.name,
-        type: args.type,
-        breed: args.breed,
-        location: args.location,
-        description: args.description,
-        image: args.image,
-        link: args.link
-      })
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError('No user found with this email address');
+      }
+
+      const correctPw = await user.isPasswordCorrect(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const token = signToken(user);
+
+      return { token, user };
     },
-    addPetToUser: async (parent, { user, pet }) => {
-      return await User.findOneAndUpdate(
-        { _id: user },
-        { $addToSet: { pets: pet } }, 
-        { new: true }
-      )
-    }
+    addPet: async (parent, args, context) => {
+      if (context.user) {
+        const pet = await Pet.create({
+          name: args.name,
+          type: args.type,
+          breed: args.breed,
+          location: args.location,
+          description: args.description,
+          image: args.image,
+          link: args.link,
+        });
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { pets: pet._id } }
+        );
+        return pet;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+     
+    },
+    // addPetToUser: async (parent, { user, pet }, context) => {
+    //   return await User.findOneAndUpdate(
+    //     { _id: user },
+        
+    //     { 
+    //       $addToSet: { pets: pet } }, 
+    //     { new: true }
+    //   );
+      
+    // }
   }
 };
 

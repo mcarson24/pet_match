@@ -44,7 +44,7 @@ UserSchema.pre('save', async function(next) {
 
 // For Authentication, check if provided password matches user's hashed password:
 UserSchema.methods.isPasswordCorrect = async password => {
-  return await bcrypt.compare(password, this.password)
+  return await bcrypt.compare(password, this.password);
 }
 
 const User = model('User', UserSchema)
