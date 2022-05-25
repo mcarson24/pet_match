@@ -20,6 +20,11 @@ const typeDefs = gql`
     pets: [Pet]
   }
 
+  type Auth {
+    token: ID!
+    user: User
+  }
+
   type Query {
     user(_id: String!): User
     users: [User]
@@ -37,6 +42,7 @@ const typeDefs = gql`
            link: String!
     ): Pet
     addPetToUser(user: ID!, pet: ID!): User
+    login(email: String!, password: String!): Auth
   }
 `
 

@@ -1,5 +1,6 @@
 const Pet = require("../models/Pet")
 const User = require("../models/User")
+const { signToken } = require('../utils/auth')
 
 const resolvers = {
   Query: {
@@ -11,6 +12,16 @@ const resolvers = {
     }
   },
   Mutation: {
+    login: async (parent, { email, password }) => {
+      const user = {
+        _id: '628d0d91e316b44728712f25',
+        name: 'BobbyRobby',
+        email: 'bob.robertson@example.com'
+      }
+      const token = signToken(user)
+
+      return { token, user}
+    },
     addUser: async (parent, { name, email, password }) => await User.create({ name, email, password }),
     addPet: async (parent, args) => {
       return await Pet.create({
