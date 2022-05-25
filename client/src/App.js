@@ -7,6 +7,8 @@ import Profile from './components/profile';
 import Mission from './components/mission';
 import Pet from './components/pet';
 import Nav from './components/nav';
+import Donate from './components/donate';
+
 
 function App() {
   return (
@@ -15,8 +17,10 @@ function App() {
 <Router>
      <React.StrictMode>
        <Nav />
+      
        <Routes>
          <Route path="/" element={<Home />} />
+         <Route path="/donate" element={<Donate />} />
          <Route path="/profile" element={<Profile />} />
          <Route path="/ourmission" element={<Mission />} />
         <Route path="/pets" element={<Pet />} />
@@ -25,7 +29,7 @@ function App() {
    </Router>
 
   
-    <Home/>
+    
 
 
     </>

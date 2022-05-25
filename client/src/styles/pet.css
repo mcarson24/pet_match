@@ -1,0 +1,23 @@
+.petHeader {
+    text-align: center;
+    font-size: 6rem;
+    color: rgb(83, 83, 83);
+}
+
+.searchCol {
+    border: 1px solid rgb(83, 83, 83);
+    border-radius: 40px;
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    
+    align-items: center;
+    min-height: 500px;
+}
+
+.searchBar {
+    min-width: 70%;
+    display: flex;
+    align-items: flex-end;
+}
