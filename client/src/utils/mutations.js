@@ -25,15 +25,9 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_PET = gql`
-  mutation addPet(name: String!, 
-    type: String!
-    breed: String!
-    location: String!
-    description: String!
-    image: String!
-    link: String!) {
+  mutation addPet($name: String!) {
     addPet(petId: $petId) {
-      _id
+     _id
     name
     type
     breed
