@@ -37,7 +37,7 @@ const resolvers = {
         throw new AuthenticationError('Incorrect credentials');
       }
 
-      const token = signToken({ email: 'bobbyrobb@example.com'});
+      const token = signToken(user);
       console.log(token);
       return { token, user };
     },
