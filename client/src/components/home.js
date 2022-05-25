@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/home.css'
 import { Link } from 'react-router-dom'
+import Carousel from './carousel';
 
 
 
@@ -11,7 +12,7 @@ function Home() {
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
             <link rel='stylesheet' href='../styles/home.css' />
 
-            <div className="jumbotron jumbotron-fluid">
+            <div >
                 <div className="container">
                     <h1 className="homeHeader">Pet Match</h1>
                 </div>
@@ -22,18 +23,10 @@ function Home() {
                 
                 <div className='row justify-content-center'>
                     <div className='col-8 slideCol'>
-                        <h3>Slides</h3>
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
+                        
+
+                        <Carousel/>
+
                     </div>
                 </div>
 
