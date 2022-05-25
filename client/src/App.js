@@ -9,6 +9,7 @@ import Pet from './components/pet';
 import Nav from './components/nav';
 import Donate from './components/donate';
 import Login from './components/login';
+import SignUp from './components/signup';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
          <Route path="/ourmission" element={<Mission />} />
         <Route path="/pets" element={<Pet />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
      </React.StrictMode>
    </Router>
