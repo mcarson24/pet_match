@@ -44,7 +44,7 @@ function Home() {
                     </div>
 
                     <div className='col-4 smallBox'>
-                    <h4 className='smallTitle'><Link to="/donate" className='links'>Our Mission</Link> </h4>    
+                    <h4 className='smallTitle'><Link to="/donate" className='links'>Make a difference</Link> </h4>    
                     </div>
 
                 </div>

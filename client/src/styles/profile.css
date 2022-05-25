@@ -13,6 +13,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: white;
 }
 
 .secondCol {
@@ -24,6 +25,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    background-color: white;
 }
 
 .userPic {
@@ -38,7 +40,7 @@
     margin: 20px;
     display: flex;
     flex-direction: column;
-    
+    background-color: white;
     align-items: center;
     min-height: 500px;
 }

@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(129, 194, 255);
+    background: linear-gradient(90deg, rgba(120,197,255,1) 0%, rgba(120,197,255,1) 50%, rgba(120,197,255,1) 100%);
 }
 
 .homeHeader {
@@ -13,6 +13,7 @@ body {
     border-radius: 40px;
     padding: 20px;
     margin: 20px;
+    background-color: white;
 }
 
 .smallBox {
