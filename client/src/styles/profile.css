@@ -1,0 +1,46 @@
+.profileHeader {
+    text-align: center;
+    font-size: 6rem;
+    color: rgb(83, 83, 83);
+}
+
+.firstCol {
+    border: 1px solid rgb(83, 83, 83);
+    border-radius: 40px;
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.secondCol {
+    border: 1px solid rgb(83, 83, 83);
+    border-radius: 40px;
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+}
+
+.userPic {
+    max-width: 500px;
+    max-height: 500px;
+}
+
+.likesCol {
+    border: 1px solid rgb(83, 83, 83);
+    border-radius: 40px;
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    align-items: center;
+    min-height: 500px;
+}
