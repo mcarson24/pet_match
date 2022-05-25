@@ -28,6 +28,7 @@ function Nav() {
                         <Link className="nav-item nav-link links" to="/pets">Pets</Link>
                         <Link className="nav-item nav-link links" to="/ourmission">Our Mission</Link>
                         <Link className="nav-item nav-link links" to="/donate">Donate</Link>
+                        <Link className="nav-item nav-link links" to="/signup">Sign Up</Link>
                        
                     </div>
                 </div>
