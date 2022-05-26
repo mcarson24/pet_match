@@ -34,3 +34,10 @@
     padding: 5px;
 }
 
+@media screen and (max-width: 600px) {
+    .loginHeader {
+        font-size: 4rem;
+        margin: 30px;
+    }
+}
+

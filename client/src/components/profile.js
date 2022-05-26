@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/profile.css'
+import Footer from './footer';
 
 
 function Profile() {
@@ -48,7 +49,7 @@ function Profile() {
 
             </div>
         
-        
+        <Footer />
         
         </>
     )

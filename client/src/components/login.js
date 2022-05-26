@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import '../styles/login.css'
+
+import Footer from "./footer";
+
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
@@ -40,6 +43,7 @@ const Login = (props) => {
       password: '',
     });
   };
+
 
     return (
         <>
@@ -84,7 +88,7 @@ const Login = (props) => {
 
             </div>
 
-
+            <Footer />
 
         </>
     )

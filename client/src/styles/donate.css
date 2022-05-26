@@ -1,0 +1,39 @@
+.donateHeader {
+    text-align: center;
+    font-size: 6rem;
+    color: rgb(83, 83, 83);
+    margin: 40px;
+}
+
+.donateBox {
+    border: 1px solid rgb(83, 83, 83);
+    border-radius: 40px;
+    padding: 20px;
+    margin: 20px 10px 20px 10px;
+    background-color: rgb(83, 83, 83);
+    color: white;
+    text-align: center;
+}
+
+.donateH2 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: rgb(83, 83, 83)
+}
+
+@media screen and (max-width: 600px) {
+    .donateHeader {
+        font-size: 4rem;
+    }
+
+    .donateBox {
+        border: 1px solid rgb(83, 83, 83);
+        border-radius: 40px;
+        padding: 20px;
+        margin: 20px 5px 20px 5px;
+        background-color: rgb(83, 83, 83);
+        color: white;
+        text-align: center;
+        min-width: 45%;
+    }
+}
