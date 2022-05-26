@@ -8,3 +8,11 @@
     justify-content: center;
     border: 1px solid black;
 }
+
+@media screen and (max-width: 600px) {
+.slidePics {
+    max-width: 350px;
+    max-height: 250px;
+}
+
+}

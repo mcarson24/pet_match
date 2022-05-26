@@ -44,3 +44,26 @@
     align-items: center;
     min-height: 500px;
 }
+
+@media screen and (max-width: 600px) {
+    .profileHeader {
+        text-align: center;
+        font-size: 4rem;
+        color: rgb(83, 83, 83);
+        margin: 30px;
+    }
+
+    .userPic {
+        max-width: 250px;
+        max-height: 250px;
+    }
+
+    .firstCol {
+        min-width: 80%;
+    }
+
+    .secondCol {
+        min-width: 80%;
+    }
+
+}

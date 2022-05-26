@@ -3,6 +3,12 @@ import '../styles/home.css'
 import { Link } from 'react-router-dom'
 import Carousel from './carousel';
 
+
+import Footer from './footer';
+
+
+
+
 function Home() {
     return (
         <>
@@ -28,6 +34,17 @@ function Home() {
                     </div>
                 </div>
             </div>
+
+
+
+
+
+
+
+            <Footer />
+
+
+
         </>
     )
 }

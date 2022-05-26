@@ -5,6 +5,7 @@ import { useLazyQuery } from '@apollo/client';
 import SavedPet from './SavedPet'
 
 import '../styles/profile.css'
+import Footer from './footer';https://github.com/mcarson24/pet_match/pull/18/conflict?name=client%252Fsrc%252Fcomponents%252Fprofile.js&ancestor_oid=217329a45d669ccac0a8a5a97a75db62957fde70&base_oid=a16b7df8320c55b855ac99ed207975223e14431a&head_oid=37e8aa9c16e2ba618751572e11ec46088439d2ad
 
 function Profile(props) {
     const [user, setUser] = useState(auth.getProfile())
@@ -58,6 +59,11 @@ function Profile(props) {
                     </div>
                 </div>
             </div>
+
+        
+        <Footer />
+        
+
         </>
     )
 }
