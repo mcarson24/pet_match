@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import React from 'react';
 import './App.css';
 import Home from './components/home';
@@ -11,33 +10,21 @@ import Donate from './components/donate';
 import Login from './components/login';
 
 
-function App() {
-  return (
-    <>
-
-<Router>
-     <React.StrictMode>
-       <Nav />
-      
-       <Routes>
-         <Route path="/" element={<Home />} />
-         <Route path="/donate" element={<Donate />} />
-         <Route path="/profile" element={<Profile />} />
-         <Route path="/ourmission" element={<Mission />} />
+const App = () => (
+  <Router>
+    <React.StrictMode>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/donate" element={<Donate />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/ourmission" element={<Mission />} />
         <Route path="/pets" element={<Pet />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-     </React.StrictMode>
-   </Router>
+    </React.StrictMode>
+  </Router>
+)
 
-  
-    
-
-
-    </>
-
-    
-  );
-}
 
 export default App;
