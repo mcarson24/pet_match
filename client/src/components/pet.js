@@ -3,10 +3,14 @@ import axios from 'axios';
 import Button from 'react-bootstrap-button-loader'
 
 import '../styles/pet.css';
-
+import auth from '../utils/auth'
+import { ADD_PET, GET_PROFILE } from '../utils/mutations'
+import { useMutation, useLazyQuery } from '@apollo/client';
 
 function Pet() {
     const [pets, setPets] = useState([])
+    const [user, setUser] = useState(auth.getProfile())
+    const [addPet, { error, data }] = useMutation(ADD_PET)
 
     const classes = {
         svg: {
@@ -39,7 +43,7 @@ function Pet() {
             borderRadius: '1em'
         }
     }
-
+    
     const getPets = e => {
         e.preventDefault()
         axios.get('http://localhost:3001/api/token')
@@ -48,8 +52,41 @@ function Pet() {
              })
     }
 
-    const likePet = pet => {
-        // Use mutator
+    const likePet = async pet => {
+        const {
+            name,
+            url,
+            type,
+            breeds,
+            description,
+            photos,
+        } = pet
+        // console.log(name,
+        //     url,
+        //     photos,
+        //     type,
+        //     breeds.primary,
+        //     description,
+        //     photos[0]['large'],
+        //     url
+        // )
+        console.log(photos[0].large)
+        try {
+            const { data, error } = await addPet({
+                variables: { 
+                    name: pet.name,
+                    type: pet.type,
+                    image: pet.photos[0].large,
+                    breed: pet.breeds.primary,
+                    location: 'Philadelphia, PA',
+                    description: pet.description,
+                    link: pet.url,
+                    petAdoptee: user.data._id
+                }
+            })
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     return (
@@ -75,7 +112,7 @@ function Pet() {
                                 <div key={pet.id} style={classes.pet}>
                                     <div style={ classes.petTitle }>
                                         <h2>{ pet.name }</h2>
-                                        <Button onClick={() => likePet(pet.id)}>
+                                        <Button onClick={() => likePet(pet)}>
                                             <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style={classes.svg}>
                                                 <path style={ { fill: 'white' } } d="m10 3.22-.61-.6a5.5 5.5 0 0 0 -7.78 7.77l8.39 8.39 8.39-8.4a5.5 5.5 0 0 0 -7.78-7.77z"/>
                                             </svg>
