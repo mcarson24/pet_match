@@ -7,8 +7,8 @@ import youtube from '../images/youtubeDark.png';
 function Footer() {
     return (
         <>
-            <div class="container-fluid footer">
-                <div class="row justify-content-center ">
+            <div className="container-fluid footer">
+                <div className="row justify-content-center ">
 
                     <div className='col-3 logoCol'>
                         <a href='/'><img src={fb} alt='' className='logos' /> </a>
@@ -21,6 +21,9 @@ function Footer() {
                     <div className='col-3 logoCol'>
                         <a href='/'><img src={youtube} alt='' className='logos' /> </a>
 
+                    </div>
+                    <div>
+                        <h5 className='petFinder'>Powered by Petfinder API</h5>
                     </div>
                 </div>
             </div>

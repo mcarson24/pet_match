@@ -68,20 +68,20 @@ const SignUp = () => {
             ) : (
                         <form onSubmit={handleFormSubmit} className="signupForm">
 
-                            <div class="form-group">
-                                <label for="name">Username</label>
+                            <div className="form-group">
+                                <label htmlFor="name">Username</label>
                                 <input type="text" 
-                                name="name" class="form-control" id="user" aria-describedby="emailHelp" placeholder="Enter Username" value={formState.name} onChange={handleChange} />
+                                name="name" className="form-control" id="user" aria-describedby="emailHelp" placeholder="Enter Username" value={formState.name} onChange={handleChange} />
 
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Confirm Email address</label>
-                                <input name='email' type="email" value={formState.email} onChange={handleChange} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" />
+                                <label htmlFor="exampleInputEmail1">Confirm Email address</label>
+                                <input name='email' type="email" value={formState.email} onChange={handleChange} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" />
                             </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
+                            <div className="form-group">
+                                <label htmlFor="exampleInputPassword1">Password</label>
 
                                
                                 
@@ -90,13 +90,13 @@ const SignUp = () => {
                                     name="password"
                                     value={formState.password}
                                     onChange={handleChange}
-                                    class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                                    className="form-control" id="exampleInputPassword1" placeholder="Password" />
 
                             </div>
 
-                            <button type="submit" class="btn btn-dark">Submit</button>
+                            <button type="submit" className="btn btn-dark">Submit</button>
                             <br/>
-                            <small id="emailHelp" class="form-text text-muted smallText">Already a user? <Link className="nav-item nav-link" to="/login">Login</Link></small>
+                            <small id="emailHelp" className="form-text text-muted smallText">Already a user? <Link className="nav-item nav-link" to="/login">Login</Link></small>
                         </form>
             )}
                         {error && (

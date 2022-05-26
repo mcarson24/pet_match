@@ -65,6 +65,13 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
      
     },
+    removePet: async (parent, { userId, petId }) => {
+      return Thought.findOneAndUpdate(
+        { _id: userId },
+        { $pull: { pets: { _id: petId } } },
+        { new: true }
+      );
+    },
     // addPetToUser: async (parent, { user, pet }, context) => {
     //   return await User.findOneAndUpdate(
     //     { _id: user },
