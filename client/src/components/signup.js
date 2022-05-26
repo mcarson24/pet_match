@@ -1,5 +1,7 @@
 import React from "react";
 import '../styles/signup.css';
+import { Link } from 'react-router-dom';
+import Footer from "./footer";
 
 
 function SignUp() {
@@ -34,9 +36,12 @@ function SignUp() {
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
                                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                                
                             </div>
 
                             <button type="submit" class="btn btn-dark">Submit</button>
+                            <br/>
+                            <small id="emailHelp" class="form-text text-muted smallText">Already a user? <Link className="nav-item nav-link" to="/login">Login</Link></small>
                         </form>
 
 
@@ -47,7 +52,7 @@ function SignUp() {
 
             </div>
 
-
+            <Footer />
 
 
         </>

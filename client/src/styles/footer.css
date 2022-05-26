@@ -1,0 +1,30 @@
+.footer {
+    margin: 20px;
+    /* position: fixed; */
+    bottom: 5px;
+    
+}
+
+.logos {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+
+.logoCol {
+    display: flex;
+    justify-content: center;
+    
+}
+
+@media screen and (max-width: 600px) {
+    .logos {
+        max-width: 75px;
+        max-height: 75px;
+    }
+
+    .footer {
+        
+        bottom: 5px;
+    }
+}

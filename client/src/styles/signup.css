@@ -33,3 +33,14 @@
     margin: 5px;
     padding: 5px;
 }
+
+@media screen and (max-width: 600px) {
+    .signupHeader {
+        font-size: 4rem;
+        margin: 30px;
+    }
+
+    .signupForm {
+        min-width: 75%;
+    }
+}

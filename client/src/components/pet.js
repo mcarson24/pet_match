@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/pet.css';
+import Footer from './footer';
 
 
 function Pet() {
@@ -26,7 +27,7 @@ function Pet() {
             </div>
 
 
-
+            <Footer />
 
         </>
     )
