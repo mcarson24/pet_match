@@ -1,8 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import '../styles/login.css'
+
 import Footer from "./footer";
 
-function Login() {
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations';
+
+import Auth from '../utils/auth';
+
+const Login = (props) => {
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [login, { error, data }] = useMutation(LOGIN_USER);
+
+  // update state based on form input changes
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  // submit form
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // clear form values
+    setFormState({
+      email: '',
+      password: '',
+    });
+  };
+
+
     return (
         <>
 
@@ -19,16 +61,20 @@ function Login() {
 
                         <h2 className="loginH2">Login</h2>
 
-                        <form className="loginForm">
+                        <form onSubmit={handleFormSubmit} className="loginForm">
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+                            <label for="exampleInputEmail1">Confirm Email address</label>
+                                <input name='email' type="email" value={formState.email} onChange={handleChange} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" />
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                            <label for="exampleInputPassword1">Password</label>
+                                <input type="password"
+                                    name="password"
+                                    value={formState.password}
+                                    onChange={handleChange}
+                                    class="form-control" id="exampleInputPassword1" placeholder="Password" />
                             </div>
 
                             <button type="submit" class="btn btn-dark">Submit</button>
