@@ -44,11 +44,10 @@ const typeDefs = gql`
            description: String!
            image: String!
            link: String!
+           petAdoptee: ID!
     ): Pet
-   
   }
- 
-  `
+`
 
 module.exports = typeDefs;
 // addPetToUser(user: ID!, pet: ID!): User

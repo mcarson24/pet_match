@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const users_controller = require('../controllers/users_controller')
 const pets_controller = require('../controllers/pets_controller')
+const api_controller = require('../controllers/api_controller')
 
 router.route('/users')
       .post(users_controller.store)
@@ -14,5 +15,8 @@ router.route('/users/:user/pets/:pet')
 
 router.route('/pets')
       .post(pets_controller.store)
+
+router.route('/token')
+      .get(api_controller.getToken)
 
 module.exports = router
