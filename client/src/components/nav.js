@@ -1,8 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
-
+import auth from '../utils/auth';
 
 function Nav() {
+    const [user, setUser] = useState(auth.getProfile())
+
+    const logout = async () => {
+        await auth.logout()
+    }
+
+    const classes = {
+        logout: {
+            background: 'none',
+            border: 'none'
+        },
+        nav: {
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+        },
+        navSection: {
+            display: 'flex',
+            flexDirection: 'row'
+        }
+    }
+
     return(
         <>
             <link
@@ -11,25 +35,29 @@ function Nav() {
                 integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
                 crossOrigin="anonymous"
             />
-            {/* <link rel='stylesheet' href='../styles/navigation.css' /> */}
             <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-
             <nav className="navbar  navbar-expand-lg navbar-light">
-
                 <button className="navbar-toggler navBtn" type="button" data-toggle="collapse" data-target="#mobileNav" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse mainNav" id="mobileNav">
-                    <div className="navbar-nav">
-                        
-                        <Link className="nav-item nav-link links" to="/">Home</Link> 
-                        <Link className="nav-item nav-link links" to="/profile">Profile</Link>
-                        
-                        <Link className="nav-item nav-link links" to="/pets">Pets</Link>
-                        <Link className="nav-item nav-link links" to="/ourmission">Our Mission</Link>
-                        <Link className="nav-item nav-link links" to="/donate">Donate</Link>
-                        <Link className="nav-item nav-link links" to="/signup">Sign Up</Link>
-                       
+                    <div className="navbar-nav" style={classes.nav}>
+                        <div style={classes.navSection}>
+                            <Link className="nav-item nav-link links" to="/">Home</Link> 
+                            {user && <Link className="nav-item nav-link links" to="/profile">Profile</Link> }
+                            <Link className="nav-item nav-link links" to="/pets">Pets</Link>
+                            <Link className="nav-item nav-link links" to="/ourmission">Our Mission</Link>
+                            <Link className="nav-item nav-link links" to="/donate">Donate</Link>
+                        </div>
+                        <div style={classes.navSection}>
+                            {!user && (
+                                <>
+                                    <Link className="nav-item nav-link links" to="/signup">Sign Up</Link>
+                                    <Link className="nav-item nav-link links" to="/login">Log In</Link>
+                                </>
+                            )}
+                            {user && <button onClick={() => logout()} className="nav-item nav-link links" style={classes.logout}>Logout</button>}
+                        </div>
                     </div>
                 </div>
             </nav>

@@ -36,13 +36,10 @@ const resolvers = {
       }
 
       const correctPw = await user.isPasswordCorrect(password);
-
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
       }
-
       const token = signToken(user);
-      console.log(token);
       return { token, user };
     },
     addPet: async (parent, args, context) => {
@@ -63,7 +60,6 @@ const resolvers = {
         return pet;
       }
       throw new AuthenticationError('You need to be logged in!');
-     
     },
     removePet: async (parent, { userId, petId }) => {
       return Thought.findOneAndUpdate(
@@ -75,12 +71,10 @@ const resolvers = {
     // addPetToUser: async (parent, { user, pet }, context) => {
     //   return await User.findOneAndUpdate(
     //     { _id: user },
-        
     //     { 
     //       $addToSet: { pets: pet } }, 
     //     { new: true }
     //   );
-      
     // }
   }
 };

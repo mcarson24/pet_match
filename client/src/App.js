@@ -1,5 +1,6 @@
-// import logo from './logo.svg';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Nav from './components/nav'
 import './App.css';
 import {
   ApolloClient,
@@ -7,17 +8,13 @@ import {
   ApolloProvider,
   createHttpLink,
 } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import Home from './components/home';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { GET_PROFILE } from './utils/mutations'
 
-import Profile from './components/profile';
-import Mission from './components/mission';
-import Pet from './components/pet';
-import Nav from './components/nav';
-import Donate from './components/donate';
-import Login from './components/login';
-import SignUp from './components/signup';
+import auth from './utils/auth'
+import { setContext } from '@apollo/client/link/context';
+
+import PetMatchRoutes from './components/PetMatchRoutes'
+
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -43,32 +40,15 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <>
-<ApolloProvider client={client}>
-<Router>
-     <React.StrictMode>
-       <Nav />
-      
-       <Routes>
-         <Route path="/" element={<Home />} />
-         <Route path="/donate" element={<Donate />} />
-         <Route path="/profile" element={<Profile />} />
-         <Route path="/ourmission" element={<Mission />} />
-        <Route path="/pets" element={<Pet />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-      </Routes>
-     </React.StrictMode>
-   </Router>
-</ApolloProvider>
-  
-    
-
-
-    </>
-
-    
-  );
+    <ApolloProvider client={client}>
+      <Router>
+        <React.StrictMode>
+          <Nav />
+          <PetMatchRoutes />
+        </React.StrictMode>
+      </Router>
+    </ApolloProvider>
+  )
 }
 
 export default App;
