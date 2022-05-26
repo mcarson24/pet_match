@@ -12,8 +12,6 @@ function Pet(props) {
     const [pets, setPets] = useState([])
     const [user, setUser] = useState(auth.getProfile())
     // const [addPet, { error, data }] = useMutation(ADD_PET)
-=======
-import Footer from './footer';
 
 
     const classes = {
@@ -56,29 +54,6 @@ import Footer from './footer';
              })
     }
 
-    // const likePet = async pet => {
-    //     try {
-    //         const { data, error } = await addPet({
-    //             variables: { 
-    //                 name: pet.name,
-    //                 type: pet.type,
-    //                 image: pet.photos[0].large,
-    //                 breed: pet.breeds.primary,
-    //                 location: 'Philadelphia, PA',
-    //                 description: pet.description,
-    //                 link: pet.url,
-    //                 petAdoptee: user.data._id
-    //             }
-    //         })
-    //         setPets(prevPets => ([
-    //             ...prevPets,
-    //             pet
-    //         ]))
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
-    // }
-
     return (
         <>
             <div className="jumbotron jumbotron-fluid">
@@ -102,11 +77,13 @@ import Footer from './footer';
                                 <div key={pet.id} style={classes.pet}>
                                     <div style={ classes.petTitle }>
                                         <h2>{ pet.name }</h2>
-                                        <Button onClick={() => props.likePet(pet)}>
-                                            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style={classes.svg}>
-                                                <path style={ { fill: 'white' } } d="m10 3.22-.61-.6a5.5 5.5 0 0 0 -7.78 7.77l8.39 8.39 8.39-8.4a5.5 5.5 0 0 0 -7.78-7.77z"/>
-                                            </svg>
-                                        </Button>
+                                        {user && (
+                                            <Button onClick={() => props.likePet(pet)}>
+                                                <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style={classes.svg}>
+                                                    <path style={ { fill: 'white' } } d="m10 3.22-.61-.6a5.5 5.5 0 0 0 -7.78 7.77l8.39 8.39 8.39-8.4a5.5 5.5 0 0 0 -7.78-7.77z"/>
+                                                </svg>
+                                            </Button>
+                                        )}
                                     </div>
  
                                     <div style={classes.petInfo}>
@@ -120,13 +97,6 @@ import Footer from './footer';
                     </div>
                 </div>
             </div>
-
-
-
-
-            <Footer />
-
-
         </>
     )
 }

@@ -5,7 +5,7 @@ class AuthService {
     const token = this.getToken()
 
     if (token) {
-      return decode(this.getToken()) || null;
+      return decode(this.getToken());
     }
   }
 

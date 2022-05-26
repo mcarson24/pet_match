@@ -18,7 +18,7 @@ const PetMatchRoutes = () => {
   const [addPet, { petError, petData }] = useMutation(ADD_PET)
   
   const [getPets, { loading, error, data }] = useLazyQuery(GET_PROFILE, {
-      variables: { id: user.data._id },
+    variables: { id: user?.data._id  },
   }, [user, pets]);
 
   useEffect(() => { 
