@@ -3,10 +3,10 @@ require("dotenv").config({
   path: path.resolve(__dirname, '../.env')
 });
 const jwt = require('jsonwebtoken');
-console.log(process.env);
+
 const secret = process.env.SECRET;
 const expiration = '2h';
-console.log(secret);
+
 module.exports = {
   authMiddleware: function ({ req }) {
     let token = req.body.token || req.query.token || req.headers.authorization;
