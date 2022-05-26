@@ -23,17 +23,11 @@ const resolvers = {
   }, 
   },
   Mutation: {
-    login: async (parent, { email, password }) => {
-      const user = {
-        _id: '628d0d91e316b44728712f25',
-        name: 'BobbyRobby',
-        email: 'bob.robertson@example.com'
-      }
-      const token = signToken(user)
-
-      return { token, user}
+    addUser: async (parent, { name, email, password }) => {
+      const user = await User.create({ name, email, password });
+      const token = signToken(user);
+      return { token, user };
     },
-    addUser: async (parent, { name, email, password }) => await User.create({ name, email, password }),
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -47,8 +41,7 @@ const resolvers = {
         throw new AuthenticationError('Incorrect credentials');
       }
 
-      const token = signToken({ email: 'bobbyrobb@example.com'});
-      console.log(token);
+      const token = signToken(user);
       return { token, user };
     },
     addPet: async (parent, args, context) => {
