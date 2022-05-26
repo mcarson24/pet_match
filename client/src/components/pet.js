@@ -12,8 +12,6 @@ function Pet(props) {
     const [pets, setPets] = useState([])
     const [user, setUser] = useState(auth.getProfile())
     // const [addPet, { error, data }] = useMutation(ADD_PET)
-=======
-import Footer from './footer';
 
 
     const classes = {
@@ -120,13 +118,6 @@ import Footer from './footer';
                     </div>
                 </div>
             </div>
-
-
-
-
-            <Footer />
-
-
         </>
     )
 }
