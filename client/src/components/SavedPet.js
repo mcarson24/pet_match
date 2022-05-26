@@ -22,9 +22,8 @@ const SavedPet = ({ pet }) => {
       color: 'rgb(113 113 122)',
     }
   }
-
   return (
-    <div key={pet._id}>
+    <div>
       <a href={pet.link} style={classes.pet}>
         <img src={pet.image} alt={pet.name} style={classes.petImage} />
         <h3>{pet.name}</h3>
@@ -32,7 +31,6 @@ const SavedPet = ({ pet }) => {
       </a>
     </div>
   )
-
-}
+ }
 
 export default SavedPet

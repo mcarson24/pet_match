@@ -7,10 +7,10 @@ import auth from '../utils/auth'
 import { ADD_PET, GET_PROFILE } from '../utils/mutations'
 import { useMutation, useLazyQuery } from '@apollo/client';
 
-function Pet() {
+function Pet(props) {
     const [pets, setPets] = useState([])
     const [user, setUser] = useState(auth.getProfile())
-    const [addPet, { error, data }] = useMutation(ADD_PET)
+    // const [addPet, { error, data }] = useMutation(ADD_PET)
 
     const classes = {
         svg: {
@@ -52,42 +52,28 @@ function Pet() {
              })
     }
 
-    const likePet = async pet => {
-        const {
-            name,
-            url,
-            type,
-            breeds,
-            description,
-            photos,
-        } = pet
-        // console.log(name,
-        //     url,
-        //     photos,
-        //     type,
-        //     breeds.primary,
-        //     description,
-        //     photos[0]['large'],
-        //     url
-        // )
-        console.log(photos[0].large)
-        try {
-            const { data, error } = await addPet({
-                variables: { 
-                    name: pet.name,
-                    type: pet.type,
-                    image: pet.photos[0].large,
-                    breed: pet.breeds.primary,
-                    location: 'Philadelphia, PA',
-                    description: pet.description,
-                    link: pet.url,
-                    petAdoptee: user.data._id
-                }
-            })
-        } catch (err) {
-            console.log(err)
-        }
-    }
+    // const likePet = async pet => {
+    //     try {
+    //         const { data, error } = await addPet({
+    //             variables: { 
+    //                 name: pet.name,
+    //                 type: pet.type,
+    //                 image: pet.photos[0].large,
+    //                 breed: pet.breeds.primary,
+    //                 location: 'Philadelphia, PA',
+    //                 description: pet.description,
+    //                 link: pet.url,
+    //                 petAdoptee: user.data._id
+    //             }
+    //         })
+    //         setPets(prevPets => ([
+    //             ...prevPets,
+    //             pet
+    //         ]))
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
+    // }
 
     return (
         <>
@@ -112,7 +98,7 @@ function Pet() {
                                 <div key={pet.id} style={classes.pet}>
                                     <div style={ classes.petTitle }>
                                         <h2>{ pet.name }</h2>
-                                        <Button onClick={() => likePet(pet)}>
+                                        <Button onClick={() => props.likePet(pet)}>
                                             <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style={classes.svg}>
                                                 <path style={ { fill: 'white' } } d="m10 3.22-.61-.6a5.5 5.5 0 0 0 -7.78 7.77l8.39 8.39 8.39-8.4a5.5 5.5 0 0 0 -7.78-7.77z"/>
                                             </svg>
@@ -121,7 +107,8 @@ function Pet() {
  
                                     <div style={classes.petInfo}>
                                         <h5>{ pet.age } | { pet.gender } | { pet.size }</h5>
-                                        <img src={pet.photos[0].large} alt={pet.name} style={classes.petImage}/>
+                                        {pet.photos.length > 0 && <img src={pet.photos[0].large} alt={pet.name} style={classes.petImage}/>}
+                                        {!pet.photos.length && <img src="http://placecorgi.com/480" alt="Placeholder" style={classes.petImage}/>}
                                     </div>
                                 </div>
                             ))}
