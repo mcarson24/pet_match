@@ -17,8 +17,6 @@ router.route('/users/:user/pets/:pet')
 router.route('/pets')
       .post(pets_controller.store)
 
-router.route('/token')
-      .use(cors())
-      .get(api_controller.getToken)
+router.get('/token', cors(), api_controller.getToken)
 
 module.exports = router
