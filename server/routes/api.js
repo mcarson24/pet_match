@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const cors = require('cors')
 const users_controller = require('../controllers/users_controller')
 const pets_controller = require('../controllers/pets_controller')
 const api_controller = require('../controllers/api_controller')
@@ -17,6 +18,7 @@ router.route('/pets')
       .post(pets_controller.store)
 
 router.route('/token')
+      .use(cors())
       .get(api_controller.getToken)
 
 module.exports = router
