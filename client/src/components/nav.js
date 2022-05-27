@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 import auth from '../utils/auth';
 
 function Nav(props) {
-    // const [user, setUser] = useState(auth.getProfile())
-
     const logout = async () => {
         await auth.logout()
     }
@@ -19,7 +17,8 @@ function Nav(props) {
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
+            margin: '0 2em'
         },
         navSection: {
             display: 'flex',

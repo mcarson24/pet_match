@@ -5,6 +5,13 @@ import twitter from '../images/twitterDark.png';
 import youtube from '../images/youtubeDark.png';
 
 function Footer() {
+    const classes = {
+        footer: {
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: '1em'
+        }
+    }
     return (
         <>
             <div className="container-fluid footer">
@@ -23,7 +30,9 @@ function Footer() {
 
                     </div>
                     <div>
-                        <h5 className='petFinder'>Powered by Petfinder API</h5>
+                        <h5 className='petFinder' style={classes.footer}>
+                            Powered by <a href="https://www.petfinder.com/developers/">Petfinder API</a>
+                        </h5>
                     </div>
                 </div>
             </div>
