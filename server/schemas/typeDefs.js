@@ -46,6 +46,8 @@ const typeDefs = gql`
            link: String!
            petAdoptee: ID!
     ): Pet
+    removePet(userId: ID!, petId: ID!): User
+   
   }
 `
 

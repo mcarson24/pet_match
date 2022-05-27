@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap-button-loader'
-
+import Footer from './footer';
 import '../styles/pet.css';
 
 import auth from '../utils/auth'
