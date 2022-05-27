@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap-button-loader'
-import Footer from './footer';
 import '../styles/pet.css';
 
 import auth from '../utils/auth'
@@ -9,7 +8,6 @@ import auth from '../utils/auth'
 function Pet(props) {
     const [pets, setPets] = useState([])
     const [user, setUser] = useState(auth.getProfile())
-
 
     const classes = {
         svg: {
