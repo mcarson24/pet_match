@@ -5,13 +5,10 @@ import Button from 'react-bootstrap-button-loader'
 import '../styles/pet.css';
 
 import auth from '../utils/auth'
-import { ADD_PET, GET_PROFILE } from '../utils/mutations'
-import { useMutation, useLazyQuery } from '@apollo/client';
 
 function Pet(props) {
     const [pets, setPets] = useState([])
     const [user, setUser] = useState(auth.getProfile())
-    // const [addPet, { error, data }] = useMutation(ADD_PET)
 
 
     const classes = {

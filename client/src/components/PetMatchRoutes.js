@@ -36,33 +36,36 @@ const PetMatchRoutes = () => {
     }
   }, [shouldRedirect, navigate])
 
-  useEffect(() => { 
+  useEffect(() => {
     async function fetch() {
       const pets = await getPets()
       setPets(pets.data.user.pets)
     }
     if (user) fetch()
+  }, [getPets, user])
 
+  useEffect(() => { 
     if (shouldRedirect) {
-      console.log('here')
       navigate('/profile')
+      setShouldRedirect(false)
     }
-  }, [getPets, user, shouldRedirect, navigate])
+  }, [shouldRedirect, navigate])
 
   const likePet = async pet => {
     try {
       const { data, error } = await addPet({
           variables: { 
-              name: pet.name,
-              type: pet.type,
-              image: pet.photos[0].large,
-              breed: pet.breeds.primary,
-              location: 'Philadelphia, PA',
-              description: pet.description,
-              link: pet.url,
-              petAdoptee: user.data._id
+            name: pet.name,
+            type: pet.type,
+            image: pet.photos[0].large,
+            breed: pet.breeds.primary,
+            location: 'Philadelphia, PA',
+            description: pet.description,
+            link: pet.url,
+            petAdoptee: user.data._id
           }
       })
+      console.log(data)
       setPets(prevPets => ([
           ...prevPets,
           data.addPet
@@ -92,7 +95,7 @@ const PetMatchRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/donate" element={<Donate />} />
         <Route path="/ourmission" element={<Mission />} />
-        <Route path="/profile" element={<Profile pets={pets}/>} />
+        <Route path="/profile" element={<Profile user={user} pets={pets}/>} />
         <Route path="/pets" element={<Pet pets={pets} likePet={likePet} />}/>
         <Route path="/login" element={<Login logInUser={logInUser} />} />
         <Route path="/signup" element={<SignUp />} />
