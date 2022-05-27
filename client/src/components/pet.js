@@ -68,7 +68,7 @@ function Pet(props) {
                         </form>
 
                         <div style={classes.petsList}>
-                            {pets.map(pet => (
+                            {pets && pets.map(pet => (
                                 <div key={pet.id} style={classes.pet}>
                                     <div style={ classes.petTitle }>
                                         <h2>{ pet.name }</h2>
@@ -80,7 +80,6 @@ function Pet(props) {
                                             </Button>
                                         )}
                                     </div>
- 
                                     <div style={classes.petInfo}>
                                         <h5>{ pet.age } | { pet.gender } | { pet.size }</h5>
                                         {pet.photos.length > 0 && <img src={pet.photos[0].large} alt={pet.name} style={classes.petImage}/>}
