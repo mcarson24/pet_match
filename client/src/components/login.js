@@ -14,7 +14,6 @@ const Login = (props) => {
   };
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(props)
     props.logInUser(formState)
   };
   return (
