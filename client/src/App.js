@@ -8,6 +8,7 @@ import {
   ApolloProvider,
   createHttpLink,
 } from '@apollo/client';
+
 import { GET_PROFILE } from './utils/mutations'
 
 import auth from './utils/auth'

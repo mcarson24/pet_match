@@ -75,7 +75,7 @@ const SignUp = () => {
 
                             </div>
 
-                            <div class="form-group">
+                            <div className="form-group">
                                 <label htmlFor="exampleInputEmail1">Confirm Email address</label>
                                 <input name='email' type="email" value={formState.email} onChange={handleChange} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" />
                             </div>
