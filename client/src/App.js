@@ -43,7 +43,6 @@ function App() {
       <ApolloProvider client={client}>
         <Router>
           <React.StrictMode>
-            <Nav />
             <PetMatchRoutes />
           </React.StrictMode>
         </Router>
