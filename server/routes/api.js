@@ -5,6 +5,12 @@ const users_controller = require('../controllers/users_controller')
 const pets_controller = require('../controllers/pets_controller')
 const api_controller = require('../controllers/api_controller')
 
+var corsOptions = {
+      origin: 'https://polar-castle-85308.herokuapp.com/',
+      optionsSuccessStatus: 200 
+}
+    
+
 router.route('/users')
       .post(users_controller.store)
 
@@ -17,6 +23,6 @@ router.route('/users/:user/pets/:pet')
 router.route('/pets')
       .post(pets_controller.store)
 
-router.get('/token', cors(), api_controller.getToken)
+router.get('/token', cors(corsOptions), api_controller.getToken)
 
 module.exports = router
