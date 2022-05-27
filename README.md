@@ -16,19 +16,19 @@
 ## Installation
 
 - Go to GitHub Repo https://github.com/mcarson24/pet_match
-<!-- - Go to Heroku Deployed Url https://pacific-falls-61654.herokuapp.com -->
+- Go to Heroku Deployed Url https://polar-castle-85308.herokuapp.com/
 
 ## Usage
 
-<!-- - Go to Heroku Deployed Url https://pacific-falls-61654.herokuapp.com -->
+Go to Heroku Deployed Url https://polar-castle-85308.herokuapp.com/
+
 - Click "Click here to sign up!"
 - Navigate to Pets in from Navbar
 - Search for pets and click on heart icon
     
-    ![FitnessPal Login Page](./public/images/loginPageFitnessPal.png)
-    ![FitnessPal Profile Page Workout Form](./public/images/profilePageCompletedWorkoutForm.png)
-    ![FitnessPal Profile Page Workout Form](./public/images/profilePageWithWorkout.png)
-
+    ![Pet Match Home Page](./assets/images/Pet_Match_homepage.png)
+    ![Pet Match Profile Page](./assets/images/Pet_Match_profile.png)
+   
     
 
 ## Credits

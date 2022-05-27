@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import '../styles/login.css'
-
+import Footer from "./footer";
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: '', password: '' });
   // update state based on form input changes
