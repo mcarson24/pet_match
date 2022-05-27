@@ -17,7 +17,7 @@ module.exports = {
       })
       
       res.status(200)
-         .setHeader("Access-Control-Allow-Origin", process.env.APP_URL)
+         .setHeader("Access-Control-Allow-Origin", process.env.APP_URL || '*')
          .setHeader("Access-Control-Allow-Credentials", true)
          .json(response.data)
     } catch (err) {
