@@ -43,7 +43,7 @@ function Pet(props) {
     
     const getPets = e => {
         e.preventDefault()
-        axios.get('http://localhost:3001/api/token')
+        axios.get('https://polar-castle-85308.herokuapp.com/api/token')
              .then(res => {
                  setPets(res.data.animals)
              })
