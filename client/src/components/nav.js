@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import auth from '../utils/auth';
 
-function Nav() {
-    const [user, setUser] = useState(auth.getProfile())
+function Nav(props) {
+    // const [user, setUser] = useState(auth.getProfile())
 
     const logout = async () => {
         await auth.logout()
@@ -44,19 +44,19 @@ function Nav() {
                     <div className="navbar-nav" style={classes.nav}>
                         <div style={classes.navSection}>
                             <Link className="nav-item nav-link links" to="/">Home</Link> 
-                            {user && <Link className="nav-item nav-link links" to="/profile">Profile</Link> }
+                            {props.user && <Link className="nav-item nav-link links" to="/profile">Profile</Link> }
                             <Link className="nav-item nav-link links" to="/pets">Pets</Link>
                             <Link className="nav-item nav-link links" to="/ourmission">Our Mission</Link>
                             <Link className="nav-item nav-link links" to="/donate">Donate</Link>
                         </div>
                         <div style={classes.navSection}>
-                            {!user && (
+                            {!props.user && (
                                 <>
                                     <Link className="nav-item nav-link links" to="/signup">Sign Up</Link>
                                     <Link className="nav-item nav-link links" to="/login">Log In</Link>
                                 </>
                             )}
-                            {user && <button onClick={() => logout()} className="nav-item nav-link links" style={classes.logout}>Logout</button>}
+                            {props.user && <button onClick={() => logout()} className="nav-item nav-link links" style={classes.logout}>Logout</button>}
                         </div>
                     </div>
                 </div>

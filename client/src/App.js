@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import Nav from './components/nav'
 import './App.css';
 import {
@@ -11,11 +11,10 @@ import {
 
 import { GET_PROFILE } from './utils/mutations'
 
-import auth from './utils/auth'
 import { setContext } from '@apollo/client/link/context';
 
 import PetMatchRoutes from './components/PetMatchRoutes'
-
+import Footer from './components/footer'
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -41,14 +40,16 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <Router>
-        <React.StrictMode>
-          <Nav />
-          <PetMatchRoutes />
-        </React.StrictMode>
-      </Router>
-    </ApolloProvider>
+    <>
+      <ApolloProvider client={client}>
+        <Router>
+          <React.StrictMode>
+            <PetMatchRoutes />
+          </React.StrictMode>
+        </Router>
+      </ApolloProvider>
+      <Footer />
+    </>
   )
 }
 

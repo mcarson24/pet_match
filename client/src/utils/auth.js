@@ -5,7 +5,7 @@ class AuthService {
     const token = this.getToken()
 
     if (token) {
-      return decode(this.getToken()) || null;
+      return decode(this.getToken());
     }
   }
 
@@ -33,7 +33,7 @@ class AuthService {
 
   login(idToken) {
     localStorage.setItem('id_token', idToken);
-    window.location.assign('/profile');
+    // window.location.assign('/#/profile');
   }
 
   logout() {
