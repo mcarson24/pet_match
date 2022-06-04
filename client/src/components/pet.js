@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Button from 'react-bootstrap-button-loader'
+import Icon from './icon'
 import '../styles/pet.css';
 
 import auth from '../utils/auth'
@@ -10,9 +10,6 @@ function Pet(props) {
     const [user, setUser] = useState(auth.getProfile())
 
     const classes = {
-        svg: {
-            height: '1em'
-        },
         petTitle: {
             display: 'flex',
             justifyContent: 'space-between',
@@ -56,29 +53,19 @@ function Pet(props) {
                     <h1 className="petHeader">Search</h1>
                 </div>
             </div>
-
             <div className='container-fluid'>
-
                 <div className='row justify-content-center'>
                     <div className='col-10 searchCol'>
-
                         <form className="form-inline searchBar" onSubmit={e => getPets(e)}>
                             <input className="form-control mr-sm-2" type="search" placeholder="Search Pets" aria-label="Search" />
                             <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
-
                         <div style={classes.petsList}>
                             {pets && pets.map(pet => (
                                 <div key={pet.id} style={classes.pet}>
                                     <div style={ classes.petTitle }>
                                         <h2>{ pet.name }</h2>
-                                        {user && (
-                                            <Button onClick={() => props.likePet(pet)}>
-                                                <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style={classes.svg}>
-                                                    <path style={ { fill: 'white' } } d="m10 3.22-.61-.6a5.5 5.5 0 0 0 -7.78 7.77l8.39 8.39 8.39-8.4a5.5 5.5 0 0 0 -7.78-7.77z"/>
-                                                </svg>
-                                            </Button>
-                                        )}
+                                        {user && <Icon clickHandler={() => props.likePet(pet)} d="m10 3.22-.61-.6a5.5 5.5 0 0 0 -7.78 7.77l8.39 8.39 8.39-8.4a5.5 5.5 0 0 0 -7.78-7.77z" />}
                                     </div>
                                     <div style={classes.petInfo}>
                                         <h5>{ pet.age } | { pet.gender } | { pet.size }</h5>

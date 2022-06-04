@@ -45,12 +45,10 @@ const typeDefs = gql`
            image: String!
            link: String!
            petAdoptee: ID!
-    ): Pet
-    removePet(userId: ID!, petId: ID!): User
-   
+          ): Pet
+    removePet(pet: ID!): User
   }
 `
 
 module.exports = typeDefs;
-// addPetToUser(user: ID!, pet: ID!): User
 

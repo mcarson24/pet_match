@@ -45,7 +45,7 @@ function Profile(props) {
                     <div className='col-10 likesCol'>
                         <h2>Saved Pets</h2>
                         <div style={classes.petContainer}>
-                            {pets && pets.map(pet => <SavedPet pet={pet} key={pet._id} /> )}
+                            {pets && pets.map(pet => <SavedPet pet={pet} key={pet._id} removePet={props.removePet} /> )}
                         </div>
                     </div>
                 </div>

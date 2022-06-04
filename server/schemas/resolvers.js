@@ -55,19 +55,17 @@ const resolvers = {
         });
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { pets: pet._id } }
+          { $addToSet: { pets: pet.id } }
         );
         return pet;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    removePet: async (parent, { userId, petId }) => {
-      return User.findOneAndUpdate(
-        { _id: userId },
-        { $pull: { pets: { _id: petId } } },
+    removePet: async (parent, { pet }, context) => 
+      await User.findByIdAndUpdate(context.user._id,
+        { $pull: { pets: pet } },
         { new: true }
-      );
-    },
+      )
   }
 };
 

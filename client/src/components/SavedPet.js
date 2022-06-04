@@ -1,6 +1,7 @@
 import React from 'react'
+import Icon from './icon'
 
-const SavedPet = ({ pet }) => {
+const SavedPet = ({ pet, removePet }) => {
 
   const classes = {
     pet: {
@@ -20,10 +21,21 @@ const SavedPet = ({ pet }) => {
     }, 
     location: {
       color: 'rgb(113 113 122)',
+    },
+    container: {
+      position: 'relative'
+    },
+    button: {
+      position: 'absolute',
+      right: '-5px'
     }
   }
+
   return (
-    <div>
+    <div style={classes.container}>
+      <Icon clickHandler={() => removePet(pet)} d="m10 8.586-7.071-7.071-1.414 1.414 7.071 7.071-7.071 7.071 1.414 1.414 7.071-7.071 7.071 7.071 1.414-1.414-7.071-7.071 7.071-7.071-1.414-1.414z" 
+            classes={classes.button}
+      />
       <a href={pet.link} style={classes.pet}>
         <img src={pet.image} alt={pet.name} style={classes.petImage} />
         <h3>{pet.name}</h3>

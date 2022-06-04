@@ -61,3 +61,15 @@ export const ADD_PET = gql`
   }
 `;
 
+export const REMOVE_PET = gql`
+  mutation RemovePet($pet: ID!) {
+    removePet(pet: $pet) {
+      _id
+      name
+      pets {
+        name
+      }
+    }
+  }
+`
+
