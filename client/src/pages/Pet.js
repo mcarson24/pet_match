@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Icon from './icon'
+import Icon from '../components/icon'
 import '../styles/pet.css';
 
 import auth from '../utils/auth'

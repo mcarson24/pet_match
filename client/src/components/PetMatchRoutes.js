@@ -5,12 +5,12 @@ import auth from '../utils/auth'
 import { ADD_PET, REMOVE_PET, GET_PROFILE, LOGIN_USER } from '../utils/mutations';
 import { useNavigate } from "react-router-dom";
 
+import Home from '../pages/Home';
+import Donate from '../pages/Donate';
+import Pet from '../pages/Pet';
+import Mission from '../pages/Mission';
 import Nav from './nav'
-import Home from './home';
 import Profile from './profile';
-import Mission from './mission';
-import Pet from './pet';
-import Donate from './donate';
 import Login from './login';
 import SignUp from './signup';
 
