@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { useLazyQuery, useMutation } from '@apollo/client';
 import auth from '../utils/auth'
-import { ADD_PET, REMOVE_PET, GET_PROFILE, LOGIN_USER } from '../utils/mutations';
+import { ADD_PET, ADD_USER, REMOVE_PET, GET_PROFILE, LOGIN_USER } from '../utils/mutations';
 import { useNavigate } from "react-router-dom";
 
 import Home from '../pages/Home';
@@ -22,13 +22,14 @@ const PetMatchRoutes = () => {
   const [addPet, { petError, petData }] = useMutation(ADD_PET)
   // eslint-disable-next-line
   const [removePet, {removePetError, removePetData }] = useMutation(REMOVE_PET)
+  const [addUser, { error, data }] = useMutation(ADD_USER);
   // eslint-disable-next-line
   const [login, { logInerror, LogInUserData }] = useMutation(LOGIN_USER);
 
   const navigate = useNavigate()
 
   // eslint-disable-next-line
-  const [getPets, { loading, error, data }] = useLazyQuery(GET_PROFILE, {
+  const [getPets, { loading, petsError, petsData }] = useLazyQuery(GET_PROFILE, {
     variables: { id: user?.data._id  },
   }, [user, pets]);
 
@@ -107,6 +108,20 @@ const PetMatchRoutes = () => {
     }
   }
 
+  const signUpUser = async (formState) => {
+    try {
+      const { data } = await addUser({
+          variables: { ...formState },
+      });
+
+      auth.login(data.addUser.token);
+      setUser(auth.getProfile())
+      setShouldRedirect(true)
+  } catch (e) {
+      console.error(e);
+  }
+  }
+
   return (
     <>
       <Nav user={user}/>
@@ -117,7 +132,7 @@ const PetMatchRoutes = () => {
         <Route path="/profile" element={<Profile user={user} pets={pets} removePet={removeLikedPet} />} />
         <Route path="/pets" element={<Pet pets={pets} likePet={likePet} />}/>
         <Route path="/login" element={<Login logInUser={logInUser} />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signup" element={<SignUp signUpUser={signUpUser} />} />
       </Routes>
     </>
   )

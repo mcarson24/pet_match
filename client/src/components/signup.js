@@ -1,24 +1,17 @@
-
-
 import '../styles/signup.css';
 
-import Footer from "./footer";
-
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
+// import { useMutation } from '@apollo/client';
+// import { ADD_USER } from '../utils/mutations';
 
-import Auth from '../utils/auth';
-
-const SignUp = () => {
+const SignUp = props => {
     const [formState, setFormState] = useState({
         name: '',
         email: '',
         password: '',
     });
-    const [addUser, { error, data }] = useMutation(ADD_USER);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -32,15 +25,7 @@ const SignUp = () => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
-        try {
-            const { data } = await addUser({
-                variables: { ...formState },
-            });
-
-            Auth.login(data.addUser.token);
-        } catch (e) {
-            console.error(e);
-        }
+        props.signUpUser(formState)
     };
 
     return (
@@ -54,7 +39,7 @@ const SignUp = () => {
                 <div className="row justify-content-center">
                     <div className="col-10 signupCol">
                         <h2 className="signupH2">Sign Up</h2>
-                        {data ? (
+                        {props.data ? (
                             <p>
                                 Success! You may now head{' '}
                                 <Link to="/">back to the homepage.</Link>
@@ -84,9 +69,9 @@ const SignUp = () => {
                                 <small id="emailHelp" className="form-text text-muted smallText">Already a user? <Link className="nav-item nav-link" to="/login">Login</Link></small>
                             </form>
                         )}
-                        {error && (
+                        {props.error && (
                             <div className="my-3 p-3 bg-danger text-white">
-                                {error.message}
+                                {props.error.message}
                             </div>
                         )}
                     </div>
